@@ -1,0 +1,5 @@
+1. Remove commits that have data i don't want to be there
+2. Learn and implement logging
+3. Learn and implement modern error handling
+4. Better way to implement email (optional, just for fun)
+5. Turn this into a python package (optional, just for fun)
