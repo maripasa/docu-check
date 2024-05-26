@@ -275,4 +275,6 @@ $RECYCLE.BIN/
 
 ### docucheck ###
 # User Data
-docucheck/data
+docucheck/data/
+test.py
+logs/

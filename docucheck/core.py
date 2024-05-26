@@ -12,15 +12,11 @@ from lib.validate_tools import validate_email, validate_cnpj
 from lib.email_tools import EmailService_Docucheck
 import lib.variables as var
 
-receiver_email = ""
-receiver_cnpj = ""
+logger = logging.getLogger(__name__)
 
 class InvalidCredentials(Exception):
-
     def __init__(self, message):
-
-        Exception.__init__(message)
-
+        super().__init__(message)
         self.when = datetime.now()
         
 class WebDriver(Protocol):
@@ -61,6 +57,7 @@ def initialize_Chrome_driver() -> webdriver.Chrome:
     driver = webdriver.Chrome(service=service, options=options)
     driver.implicitly_wait(30)
 
+    logger
     return driver
   
 def click_element(driver: WebDriver, xpath: str, times: int = 1) -> None:
@@ -204,26 +201,26 @@ class EmailMessage:
 
         return message
 
-def main():
+class DocuCheck:
+    def __init__(self, receiver_email, receiver_cnpj):
+        self.receiver_email = receiver_email
+        self.receiver_cnpj = receiver_cnpj
 
-    driver = initialize_Chrome_driver()
-    scrapper = DocumentScrapper(driver)
-    data = scrapper.get_documentation_info(receiver_cnpj)
-    
-    driver.quit()
-    
-    expired_docs = filter_expired(data)
-    near_expired_docs = filter_near_expired(data)
-    
-    email = EmailMessage(expired_docs, near_expired_docs)
-    
-    GmailEmailSender = EmailService_Docucheck()
-    
-    GmailEmailSender.send_message(receiver_email,
-    "DocuCheck - Documentos Vencidos e/ou Próximos do Vencimento",
-    email.message)
-    
-    driver.quit()
+    def execute(self):
+        driver = initialize_Chrome_driver()
+        try:
+            scrapper = DocumentScrapper(driver)
+            data = scrapper.get_documentation_info(self.receiver_cnpj)
 
-if __name__ == "__main__":
-    main()
+            expired_docs = filter_expired(data)
+            near_expired_docs = filter_near_expired(data)
+
+            email = EmailMessage(expired_docs, near_expired_docs)
+
+            GmailEmailSender = EmailService_Docucheck()
+
+            GmailEmailSender.send_message(self.receiver_email,
+                                          "DocuCheck - Documentos Vencidos e/ou Próximos do Vencimento",
+                                          email.message)
+        finally:
+            driver.quit()
