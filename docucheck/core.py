@@ -104,13 +104,13 @@ class DocumentScrapper:
         if not validate_cnpj(receiver_cnpj):
             raise InvalidCredentials("invalid CNPJ")
         
-        table = self.collect_table_sefaz(self.driver)
+        table = self.collect_table_sefaz(driver=self.driver, receiver_cnpj=receiver_cnpj)
         table_data = self.scrape_table_sefaz(*table)
         extracted_data = self.extract_required_info_sefaz(table_data)
         
         return extracted_data
     
-    def collect_table_sefaz(self, driver) -> tuple:
+    def collect_table_sefaz(self, driver, receiver_cnpj) -> tuple:
         """
         Access documentation information site from the UI.
         """

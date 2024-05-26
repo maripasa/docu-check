@@ -1,7 +1,11 @@
-3. Learn and implement modern error handling
-2. Learn and implement logging (it lacks implementation)
+1. Error Handling
+    3. Learn and implement modern error handling
+    2. Learn and implement logging (it lacks implementation)
 
-4. Better way to implement email (optional, just for fun)
+2. Email Handling
+    4. Better way to implement email (optional, just for fun)
+    1. Make the email prettier
+        add date of check
 5. Turn this into a python package (optional, just for fun)
 
 google-auth

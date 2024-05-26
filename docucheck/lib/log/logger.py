@@ -1,6 +1,7 @@
 import datetime as datetime
 import json
 import logging
+import logging.config
 from typing import override
 import os
 import atexit
@@ -38,7 +39,7 @@ def setup_logging():
     os.makedirs(os.path.dirname(json_folder), exist_ok=True)
     os.makedirs(os.path.dirname(txt_folder), exist_ok=True)
     
-    config_file = os.path.join("docucheck", "log", "logging.json")
+    config_file = os.path.join("docucheck", "lib", "log", "logging.json")
     with open(config_file) as f_in:
         config = json.load(f_in)
 

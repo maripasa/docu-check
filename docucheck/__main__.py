@@ -25,11 +25,13 @@ def parse(args):
         print("Does nothing yet")
 
     if args.cnpj is not None and args.email is not None:
-        print("Does nothing yet")
+        cnpj = args.cnpj
+        email = args.email
     else:
-        print("Does nothing yet")
+        print("You need an email and a CNPJ to run the program.")
+        sys.exit(1)
 
-    verifier = DocuCheck()
+    verifier = DocuCheck(receiver_cnpj=cnpj, receiver_email=email)
     verifier.execute()
 
 
@@ -53,17 +55,11 @@ def main():
     if args.version:
         print("docucheck " + VERSION)
         sys.exit(0)
-
+    
     if args.debug:
         setup_logging()
     else:
         logging.basicConfig()
-    if args.help_duration:
-        print(HELP_MSGS["help_duration"])
-        sys.exit(0)
-    if args.version:
-        print("stimer " + VERSION)
-        sys.exit(0)
     
     try:
         parse(args)

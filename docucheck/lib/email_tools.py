@@ -1,12 +1,22 @@
 import smtplib
+
+# gambiarra
+import os
+import json
+
 from email.message import EmailMessage
 
 class EmailService_Docucheck:
     def __init__(self) -> None:
+        
+        # gambiarra
+        credentials_filepath = os.path.join("docucheck", "data", "credentials.json")
+        with open(credentials_filepath) as file:
+            credentials = json.load(file)
         self.smtp_server = 'smtp.gmail.com'
         self.port = 587
-        self.sender_email = ''
-        self.sender_password = ''
+        self.sender_email = credentials['email']
+        self.sender_password = credentials['password']
 
     def send_message(self, to_email: str, subject: str, body: str) -> None:
         msg = EmailMessage()
