@@ -88,7 +88,7 @@ def filter_near_expired(table_data: list[dict], days_remaining: int = 10) -> lis
     """
     Filter the documents table to get only the documents that will expire in the next 'days_remaining' days.
     """
-    dated_docs = [document for document in table_data if document["validade"] != '']
+    dated_docs = [document for document in table_data if document["validade"] != '' and document['status'] != 'Vencido']
     today = datetime.date.today()
     near_expired_docs = [document for document in dated_docs if (datetime.datetime.strptime(document["validade"], '%d/%m/%Y').date() - today).days < days_remaining]
 
@@ -179,7 +179,7 @@ class EmailMessage:
         for document in table:
             table_data.append([document['status'], document['tipo'], document['validade']])
 
-        return tabulate(table_data, headers='firstrow', tablefmt='rounded_outline')
+        return tabulate(table_data, headers='firstrow', tablefmt='simple')
         
     def generate_email_body(self, table_expired: str, table_near_expired: str, days_remaining: int = 10) -> str:
         """
@@ -208,19 +208,21 @@ class DocuCheck:
 
     def execute(self):
         driver = initialize_Chrome_driver()
-        try:
-            scrapper = DocumentScrapper(driver)
-            data = scrapper.get_documentation_info(self.receiver_cnpj)
+    
+        scrapper = DocumentScrapper(driver)
+        data = scrapper.get_documentation_info(self.receiver_cnpj)
 
-            expired_docs = filter_expired(data)
-            near_expired_docs = filter_near_expired(data)
+        driver.quit()
+        
+        expired_docs = filter_expired(data)
+        near_expired_docs = filter_near_expired(data)
 
-            email = EmailMessage(expired_docs, near_expired_docs)
+        email = EmailMessage(expired_docs, near_expired_docs)
 
-            GmailEmailSender = EmailService_Docucheck()
+        GmailEmailSender = EmailService_Docucheck()
 
-            GmailEmailSender.send_message(self.receiver_email,
-                                          "DocuCheck - Documentos Vencidos e/ou Próximos do Vencimento",
-                                          email.message)
-        finally:
-            driver.quit()
+        GmailEmailSender.send_message(self.receiver_email,
+                                        "DocuCheck - Documentos Vencidos e/ou Próximos do Vencimento",
+                                        email.message)
+    
+            

@@ -1,3 +1,4 @@
 selenium
 webdriver_manager
 tabulate
+python >= 3.12
