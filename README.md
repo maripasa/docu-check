@@ -14,9 +14,9 @@ To install Docu-Check, follow these steps:
    
    `pip install -r requirements.txt`
 
-Requirements
+## Requirements
 
-## Docu-Check requires the following Python libraries:
+Docu-Check requires the following Python libraries:
 
 - selenium
 - webdriver_manager
