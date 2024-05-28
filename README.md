@@ -1,8 +1,8 @@
-Docu-Check
+# Docu-Check
 
 Docu-Check is a command-line tool designed to automate the verification of documents related to Brazilian companies using their CNPJ.
 
-Installation
+## Installation
 
 To install Docu-Check, follow these steps:
 
@@ -16,25 +16,25 @@ To install Docu-Check, follow these steps:
 
 Requirements
 
-Docu-Check requires the following Python libraries:
+## Docu-Check requires the following Python libraries:
 
 - selenium
 - webdriver_manager
 - tabulate
 - python >= 3.12
 
-Usage
+## Usage
 
 After installation, you can run Docu-Check from the command line:
 
 `docucheck --email example@example.com --cnpj 1234567890`
 
-Features
+## Features
 
 - Automates document verification for Brazilian companies.
 - Uses CNPJ for document identification.
 - Provides a command-line interface for easy access.
 
-License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
