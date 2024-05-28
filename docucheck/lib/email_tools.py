@@ -1,3 +1,6 @@
+"""
+Esse programa é totalmente gambiarra até ser refatorado.
+"""
 import smtplib
 
 # gambiarra
@@ -6,9 +9,9 @@ import json
 
 from email.message import EmailMessage
 
-class EmailService_Docucheck:
+
+class EmailServiceDocucheck:
     def __init__(self) -> None:
-        
         # gambiarra
         credentials_filepath = os.path.join("docucheck", "data", "credentials.json")
         with open(credentials_filepath) as file:
@@ -30,9 +33,10 @@ class EmailService_Docucheck:
         server.login(self.sender_email, self.sender_password, initial_response_ok=True)
         server.send_message(msg)
 
-        server.quit()    
+        server.quit()
 
-class EmailSender:
+
+"""class EmailSender:
     def __init__(self, smtp_server: str, port: int, email: str, password: str) -> None:
         self.smtp_server = smtp_server
         self.port = port
@@ -51,4 +55,4 @@ class EmailSender:
         server.login(self.sender_email, self.sender_password, initial_response_ok=True)
         server.send_message(msg)
 
-        server.quit()  
+        server.quit()  """

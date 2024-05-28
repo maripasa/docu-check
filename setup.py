@@ -4,8 +4,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='docucheck',
-    version="0.0.1",
+    name='docu-check',
+    version="0.0.2",
     author="Ásafe Duarte",
     author_email="asafexi@proton.me",
     description=(
@@ -23,10 +23,11 @@ setuptools.setup(
     ],
     packages=setuptools.find_packages(),
     install_requires=[
-        'rich',
-        'selenium',
-        'webdriver_manager',
+        "selenium",
+        "webdriver_manager",
+        "tabulate"
     ],
+    python_requires=">=3.12",
     entry_points={
         'console_scripts': [
             'docucheck = docucheck.__main__:main'

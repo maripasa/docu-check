@@ -6,7 +6,8 @@ import logging
 
 from core import DocuCheck
 from lib.log.logger import setup_logging
-VERSION = "v0.0.1"
+
+VERSION = "v0.0.2"
 
 HELP_MSGS = {
 
@@ -17,6 +18,7 @@ HELP_MSGS = {
     "no_headless": "Run the browser in headless mode.",
     "version": "Show the current docucheck version.",
 }
+
 
 def parse(args):
     if args.no_headless:
@@ -55,12 +57,12 @@ def main():
     if args.version:
         print("docucheck " + VERSION)
         sys.exit(0)
-    
+
     if args.debug:
         setup_logging()
     else:
         logging.basicConfig()
-    
+
     try:
         parse(args)
     except KeyboardInterrupt:

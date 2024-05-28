@@ -32,13 +32,14 @@ LOG_RECORD_BUILTIN_ATTRS = {
     "taskName",
 }
 
+
 def setup_logging():
     json_folder = os.path.join("logs", "json")
     txt_folder = os.path.join("logs", "txt")
-    
+
     os.makedirs(os.path.dirname(json_folder), exist_ok=True)
     os.makedirs(os.path.dirname(txt_folder), exist_ok=True)
-    
+
     config_file = os.path.join("docucheck", "lib", "log", "logging.json")
     with open(config_file) as f_in:
         config = json.load(f_in)
@@ -49,11 +50,12 @@ def setup_logging():
         queue_handler.listener.start()
         atexit.register(queue_handler.listener.stop)
 
+
 class JSONFormatter(logging.Formatter):
     def __init__(
-        self,
-        *,
-        fmt_keys: dict[str, str] | None = None,
+            self,
+            *,
+            fmt_keys: dict[str, str] | None = None,
     ):
         super().__init__()
         self.fmt_keys = fmt_keys if fmt_keys is not None else {}

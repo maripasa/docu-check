@@ -6,8 +6,12 @@
     4. Better way to implement email (optional, just for fun)
     1. Make the email prettier
         add date of check
-5. Turn this into a python package (optional, just for fun)
 
+3. Make a README
+
+4. Turn this into a python package (optional, just for fun)
+
+5. Implement credential checking at __main__ level
 google-auth
 google-auth-oauthlib
 google-auth-httplib2
