@@ -1,60 +1,56 @@
 {
-    "version": 1,
-    "disable_existing_loggers": false,
-    "formatters": {
+  "version": 1,
+  "disable_existing_loggers": false,
+  "formatters": {
     "simple": {
-        "format": "%(levelname)s: %(message)s",
-        "datefmt": "%Y-%m-%dT%H:%M:%S%z"
+      "format": "%(levelname)s: %(message)s",
+      "datefmt": "%Y-%m-%dT%H:%M:%S%z"
     },
     "json": {
-        "()": "lib.log.logger.JSONFormatter",
-        "fmt_keys": {
+      "()": "lib.log.logger.JSONFormatter",
+      "fmt_keys": {
         "level": "levelname",
         "message": "message",
-        "timestamp": "timestamp",
+        "date": "date",
         "logger": "name",
         "module": "module",
         "function": "funcName",
         "line": "lineno",
         "thread_name": "threadName"
-        }
+      }
     }
-    },
-    "filters": {
-        "no_errors": {
-            "()": "lib.log.logger.NonErrorFilter"
-        }
-    },
-    "handlers": {
+  },
+  "filters": {
+    "no_errors": {
+      "()": "lib.log.logger.NonErrorFilter"
+    }
+  },
+  "handlers": {
     "stdout": {
-        "class": "logging.StreamHandler",
-        "formatter": "simple",
-        "stream": "ext://sys.stdout",
-        "filters": ["no_errors"]
+      "class": "logging.StreamHandler",
+      "formatter": "simple",
+      "stream": "ext://sys.stdout",
+      "filters": ["no_errors"]
     },
     "stderr": {
-        "class": "logging.StreamHandler",
-        "level": "WARNING",
-        "formatter": "simple",
-        "stream": "ext://sys.stderr"
+      "class": "logging.StreamHandler",
+      "level": "WARNING",
+      "formatter": "simple",
+      "stream": "ext://sys.stderr"
     },
     "file": {
-        "class": "logging.handlers.RotatingFileHandler",
-        "level": "DEBUG",
-        "formatter": "json",
-        "filename": "logs/docucheck.jsonl",
-        "maxBytes": 10000,
-        "backupCount": 3
+      "class": "logging.handlers.RotatingFileHandler",
+      "level": "DEBUG",
+      "formatter": "json",
+      "filename": "logs/docucheck.jsonl",
+      "maxBytes": 10000,
+      "backupCount": 3
     }
-    },
-    "loggers": {
+  },
+  "loggers": {
     "root": {
-        "level": "DEBUG",
-        "handlers": [
-        "stdout",
-        "stderr",
-        "file"
-        ]
+      "level": "DEBUG",
+      "handlers": ["stdout", "stderr", "file"]
     }
-    }
+  }
 }
