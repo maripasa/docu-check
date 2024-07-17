@@ -1,4 +1,6 @@
 selenium
 webdriver_manager
 tabulate
-python >= 3.12
+sqlalchemy
+sqlalchemy_utils
+psycopg2-binary
