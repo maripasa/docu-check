@@ -1,64 +1,65 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2024-07-17 17:06:31.132
+-- Last modification date: 2024-06-07 01:27:37.867
 
 -- tables
--- Table: companies
-CREATE TABLE companies (
+-- Table: consulta
+CREATE TABLE consulta (
     id serial  NOT NULL,
-    name varchar(255)  NOT NULL,
+    data_consulta date  NOT NULL,
+    id_empresa int  NOT NULL,
+    CONSTRAINT consulta_pk PRIMARY KEY (id)
+);
+
+-- Table: documento
+CREATE TABLE documento (
+    id serial  NOT NULL,
+    tipo varchar(255)  NOT NULL,
+    CONSTRAINT documento_pk PRIMARY KEY (id)
+);
+
+-- Table: empresa
+CREATE TABLE empresa (
+    id serial  NOT NULL,
+    nome varchar(255)  NOT NULL,
     cnpj char(11)  NOT NULL,
     email varchar(255)  NOT NULL,
-    CONSTRAINT companies_pk PRIMARY KEY (id)
+    CONSTRAINT empresa_pk PRIMARY KEY (id)
 );
 
--- Table: company_document
-CREATE TABLE company_document (
+-- Table: empresa_documento
+CREATE TABLE empresa_documento (
     id serial  NOT NULL,
-    start_date timestamp  NOT NULL,
-    expiry_date timestamp  NOT NULL,
-    id_company int  NOT NULL,
-    id_document int  NOT NULL,
-    CONSTRAINT company_document_pk PRIMARY KEY (id)
-);
-
--- Table: consultations
-CREATE TABLE consultations (
-    id serial  NOT NULL,
-    consultation_date timestamp  NOT NULL,
-    id_company int  NOT NULL,
-    CONSTRAINT consultations_pk PRIMARY KEY (id)
-);
-
--- Table: documents
-CREATE TABLE documents (
-    id serial  NOT NULL,
-    type varchar(255)  NOT NULL,
-    CONSTRAINT documents_pk PRIMARY KEY (id)
+    data_inicio date  NOT NULL,
+    data_vencimento date  NOT NULL,
+    id_empresa int  NOT NULL,
+    id_documento int  NOT NULL,
+    CONSTRAINT empresa_documento_pk PRIMARY KEY (id)
 );
 
 -- foreign keys
--- Reference: consulta_empresa (table: consultations)
-ALTER TABLE consultations ADD CONSTRAINT consulta_empresa
-    FOREIGN KEY (id_company)
-    REFERENCES companies (id)  
+-- Reference: consulta_empresa (table: consulta)
+ALTER TABLE consulta ADD CONSTRAINT consulta_empresa
+    FOREIGN KEY (id_empresa)
+    REFERENCES empresa (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
--- Reference: empresa_documento_documento (table: company_document)
-ALTER TABLE company_document ADD CONSTRAINT empresa_documento_documento
-    FOREIGN KEY (id_document)
-    REFERENCES documents (id)  
+-- Reference: empresa_documento_documento (table: empresa_documento)
+ALTER TABLE empresa_documento ADD CONSTRAINT empresa_documento_documento
+    FOREIGN KEY (id_documento)
+    REFERENCES documento (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
--- Reference: empresa_documento_empresa (table: company_document)
-ALTER TABLE company_document ADD CONSTRAINT empresa_documento_empresa
-    FOREIGN KEY (id_company)
-    REFERENCES companies (id)  
+-- Reference: empresa_documento_empresa (table: empresa_documento)
+ALTER TABLE empresa_documento ADD CONSTRAINT empresa_documento_empresa
+    FOREIGN KEY (id_empresa)
+    REFERENCES empresa (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
 -- End of file.
+
