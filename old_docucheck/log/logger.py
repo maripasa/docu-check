@@ -1,10 +1,10 @@
+import atexit
 import datetime as datetime
 import json
 import logging
 import logging.config
-from typing import override
 import os
-import atexit
+from typing import override
 
 LOG_RECORD_BUILTIN_ATTRS = {
     "args",
@@ -45,10 +45,14 @@ def setup_logging():
         config = json.load(f_in)
 
     logging.config.dictConfig(config)
-    queue_handler = logging.getHandlerByName("queue_handler")
-    if queue_handler is not None:
+    logging.config.dictConfig(config)
+
+    queue_handler = logging.Logger.manager.loggerDict.get('queue_handler')
+    if queue_handler and hasattr(queue_handler, 'listener'):
         queue_handler.listener.start()
         atexit.register(queue_handler.listener.stop)
+    else:
+        logging.error("Queue handler or its listener could not be found or initialized")
 
 
 class JSONFormatter(logging.Formatter):

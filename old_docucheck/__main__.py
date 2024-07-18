@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
-import sys
 import argparse
 import logging
+import sys
 
-from core import DocuCheck
 from lib.log.logger import setup_logging
+
+from old_docucheck.core import DocuCheck
 
 VERSION = "v0.0.2"
 

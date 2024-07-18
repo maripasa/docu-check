@@ -1,7 +1,6 @@
 import sqlalchemy
-import datetime as dt
 from sqlalchemy.orm import (
-    sessionmaker, 
+    sessionmaker,
     declarative_base,
 )
 

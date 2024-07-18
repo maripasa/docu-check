@@ -1,17 +1,18 @@
 # Docu-Check
 
-Docu-Check is a command-line tool designed to automate the verification of documents related to Brazilian companies using their CNPJ.
+Docu-Check is a command-line tool designed to automate the verification of documents related to Brazilian companies
+using their CNPJ.
 
 ## Installation
 
 To install Docu-Check, follow these steps:
 
 1. Clone the repository:
-   
+
    `git clone https://github.com/your-username/docu-check.git`
 
 2. Install the required dependencies:
-   
+
    `pip install -r requirements.txt`
 
 ## Requirements

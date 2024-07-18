@@ -1,12 +1,10 @@
 """
-Esse programa é totalmente gambiarra até ser refatorado.
+Esse método deve ser refatorado.
 """
-import smtplib
-
+import json
 # gambiarra
 import os
-import json
-
+import smtplib
 from email.message import EmailMessage
 
 

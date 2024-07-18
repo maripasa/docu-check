@@ -30,7 +30,9 @@
       "class": "logging.StreamHandler",
       "formatter": "simple",
       "stream": "ext://sys.stdout",
-      "filters": ["no_errors"]
+      "filters": [
+        "no_errors"
+      ]
     },
     "stderr": {
       "class": "logging.StreamHandler",
@@ -50,7 +52,11 @@
   "loggers": {
     "root": {
       "level": "DEBUG",
-      "handlers": ["stdout", "stderr", "file"]
+      "handlers": [
+        "stdout",
+        "stderr",
+        "file"
+      ]
     }
   }
 }

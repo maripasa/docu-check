@@ -1,16 +1,16 @@
+import datetime
 import logging
 from typing import Protocol
-from tabulate import tabulate
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-import datetime
 
+import lib.variables as var
+from lib.email_tools import EmailServiceDocucheck
 # Import functions/classes from custom modules
 from lib.validate_tools import validate_cnpj
-from lib.email_tools import EmailServiceDocucheck
-import lib.variables as var
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from tabulate import tabulate
+from webdriver_manager.chrome import ChromeDriverManager
 
 logger = logging.getLogger("docucheck.core")
 

@@ -1,6 +1,7 @@
 from db import db, Base
 
-class Company(Base):
+
+class CompanyModel(Base):
     __tablename__ = "companies"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.VARCHAR(255), nullable=False)

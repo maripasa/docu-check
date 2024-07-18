@@ -2,5 +2,4 @@ selenium
 webdriver_manager
 tabulate
 sqlalchemy
-sqlalchemy_utils
 psycopg2-binary
